@@ -18,7 +18,6 @@ public class Name extends ASTLeaf {
 		if (value == null)
 			throw new CoolLgException("undefined name: " + name(), this);
 		else {
-			// int a = Integer.valueOf((String) value);
 			return value;
 		}
 	}

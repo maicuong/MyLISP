@@ -33,21 +33,8 @@ public class BinaryExpr extends ASTList {
 		} else {
 			Object left = ((ASTree) left()).eval(env);
 			Object right = ((ASTree) right()).eval(env);
-			// System.out.println(left);
-			// int a = Integer.parseInt((String) left);
-			// int b = Integer.parseInt((String) right);
 			return computeOp(left, op, right);
-			// Object left = ((ASTree) left()).eval(env);
-			// Object right = right().eval(env);
-			// int a = ((Integer) left).intValue();
-			// int b = ((Integer) right).intValue();
-			// String a = (String) left.get("a");
-			// BasicEnvironment e = new BasicEnvironment();
-			// e.put(a, 1);
-			// return computeNumber(a, op, b);
-			// return e;
 		}
-
 	}
 
 	protected Object computeAssign(Environment env, Object rvalue) {
@@ -76,18 +63,9 @@ public class BinaryExpr extends ASTList {
 			}
 			return computeNumber(a, op, b);
 		}
-		// else if (op.equals("==")) {
-		// if (left == null)
-		// return right == null ? TRUE : FALSE;
-		// else
-		// return right == null ? TRUE : FALSE;
-		// else
-		// throw new CoolLgException("bad type", this);
 	}
 
 	protected Object computeNumber(Integer a, String op, Integer b) {
-		// int a = left.intValue();
-		// int b = right.intValue();
 		if (op.equals("+"))
 			return a + b;
 		else if (op.equals("-"))

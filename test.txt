@@ -1,3 +1,10 @@
-if (< 2 3) (+ 2 3) (setq c 3)
-+ 2 3
+(+ 1 2)
+(/ 2 1)
+(< 1 2)
+(= 1 2)
+(setq a 1)
+(a)
+(if (> 2 1) (setq a 1 setq b 2) setq b 3))
+(defun add (a b) (+ a b))
+(add (1 2))
 

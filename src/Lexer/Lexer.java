@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import Runner.CodeDialog;
+
 public class Lexer {
 	public static String regexPat = "\\s*((//.*)|([0-9]+)|(\"(\\\\\"|\\\\\\\\|\\\\n|[^\"])*\")"
 			+ "|[A-Z_a-z][A-Z_a-z0-9]*|==|<=|>=|&&|\\|\\||\\p{Punct})?";
@@ -157,5 +159,11 @@ public class Lexer {
 		public String getText() {
 			return literal;
 		}
+	}
+
+	public static void main(String[] args) throws ParseException {
+		Lexer l = new Lexer(new CodeDialog());
+		for (Token t; (t = l.read()) != Token.EOF;)
+			System.out.println("=> " + t.getText());
 	}
 }

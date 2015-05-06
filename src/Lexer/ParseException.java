@@ -2,6 +2,8 @@ package Lexer;
 
 import java.io.IOException;
 
+import Lexer.Token;
+
 public class ParseException extends Exception {
 	public ParseException(Token t) {
 		this("", t);

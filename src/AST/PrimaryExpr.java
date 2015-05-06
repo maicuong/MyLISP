@@ -29,17 +29,8 @@ public class PrimaryExpr extends ASTList {
 		return numChildren() - nest > 1;
 	}
 
-	/*
-	 * public Object eval(Environment env) { return evalSubExpr(env, 0); }
-	 * 
-	 * public Object evalSubExpr(Environment env, int nest) { if
-	 * (hasPostfix(nest)) { Object target = evalSubExpr(env, nest + 1); return
-	 * postfix(nest).eval(env, target); } else return operand().eval(env); }
-	 */
-
 	public Object eval(Environment env) {
 		Object res = ((ASTree) operand()).eval(env);
-		// System.out.println("" + res);
 		int n = numChildren();
 		for (int i = 1; i < n; i++)
 			res = postfix(i).eval(env, res);

@@ -8,9 +8,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import AST.ASTree;
-import AST.NestedEnv;
-import AST.NullStmnt;
-import ExprParser.ExprParser;
 import Lexer.Lexer;
 import Lexer.ParseException;
 
@@ -21,7 +18,6 @@ public class FuncInterpreter_ReadFile {
 	}
 
 	public static void run(Environment env) throws ParseException, IOException {
-
 		InputStreamReader is = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(is);
 		System.out.println("ファイル名を入力してください。");
@@ -34,15 +30,13 @@ public class FuncInterpreter_ReadFile {
 		} catch (FileNotFoundException e) {
 			System.out.println(e);
 		}
+
 		Lexer lexer = new Lexer(filereader);
-		// while (lexer.peek(0) != Token.EOF) {
 		ExprParser p = new ExprParser(lexer);
 		ASTree t = p.expression();
-		if (!(t instanceof NullStmnt)) {
+		if (t != null) {
 			Object r = ((ASTree) t).eval(env);
-			// BasicEnvironment r = (BasicEnvironment) ((ASTree) t).eval(env);
 			System.out.println(r);
-			// }
 		}
 	}
 }

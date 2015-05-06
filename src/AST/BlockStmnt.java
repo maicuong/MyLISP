@@ -28,7 +28,6 @@ public class BlockStmnt extends ASTList {
 		Object result = 0;
 		String i = "";
 		for (ASTree t : this) {
-			// if (!(t instanceof NullStmnt))
 			if (t != null)
 				result = ((ASTree) t).eval(env);
 			i = (String) (i + result);

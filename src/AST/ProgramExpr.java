@@ -4,13 +4,13 @@ import java.util.List;
 
 import Runner.Environment;
 
-public class BlockStmnt extends ASTList {
-	public BlockStmnt(List<ASTree> c) {
+public class ProgramExpr extends ASTList {
+	public ProgramExpr(List<ASTree> c) {
 		super(c);
 	}
 
 	public static ASTree create(List<ASTree> c) {
-		return new BlockStmnt(c);
+		return new ProgramExpr(c);
 	}
 
 	public String toString() {
@@ -28,10 +28,10 @@ public class BlockStmnt extends ASTList {
 		Object result = 0;
 		String i = "";
 		for (ASTree t : this) {
-			// if (!(t instanceof NullStmnt))
-			if (t != null)
+			if (t != null) {
 				result = ((ASTree) t).eval(env);
-			i = (String) (i + result);
+				i = (String) (i + "=>" + result + "\n");
+			}
 		}
 		return i;
 	}

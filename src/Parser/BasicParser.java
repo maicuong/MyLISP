@@ -10,11 +10,9 @@ import AST.BlockStmnt;
 import AST.IfStmnt;
 import AST.Name;
 import AST.NegativeExpr;
-import AST.NullStmnt;
 import AST.NumberLiteral;
 import AST.PrimaryExpr;
 import AST.StringLiteral;
-import AST.WhileStmnt;
 import Lexer.Lexer;
 import Lexer.ParseException;
 import Lexer.Token;
@@ -34,19 +32,14 @@ public class BasicParser {
 	Parser expr = expr0.expression(BinaryExpr.class, factor, operators);
 
 	Parser statement0 = rule();
-	Parser block = rule(BlockStmnt.class).sep("{").option(statement0)
-			.repeat(rule().sep(";", Token.EOL).option(statement0)).sep("}");
+	Parser block = rule(BlockStmnt.class).option(statement0)
+			.repeat(rule().sep(Token.EOL).option(statement0)).sep(")");
 	Parser simple = rule(PrimaryExpr.class).ast(expr);
-	Parser statement = statement0.or(rule(IfStmnt.class).sep("if").ast(expr)
-			.ast(block).option(rule().sep("else").ast(block)),
-			rule(WhileStmnt.class).sep("while").ast(expr).ast(block), simple);
-
-	Parser program = rule().or(statement, rule(NullStmnt.class)).sep(";",
-			Token.EOL);
+	Parser statement = statement0.or(rule(IfStmnt.class).sep("(").sep("if")
+			.ast(expr).ast(block), simple);
+	Parser program = rule().option(statement).sep(Token.EOL);
 
 	public BasicParser() {
-		reserved.add(";");
-		reserved.add("}");
 		reserved.add(Token.EOL);
 
 		operators.add("=", 1, Operators.RIGHT);

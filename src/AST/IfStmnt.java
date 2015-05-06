@@ -31,7 +31,7 @@ public class IfStmnt extends ASTList {
 
 	public Object eval(Environment env) {
 		Object c = ((ASTree) condition()).eval(env);
-		if (c instanceof Integer && ((Integer) c).intValue() != FALSE)
+		if (c.equals("T"))
 			return ((ASTree) thenBlock()).eval(env);
 		else {
 			ASTree b = elseBlock();

@@ -42,4 +42,5 @@ public class ASTLeaf extends ASTree {
 	public Object eval(Environment env) {
 		throw new CoolLgException("cannot eval: " + toString(), this);
 	}
+
 }

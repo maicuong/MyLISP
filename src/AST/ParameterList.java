@@ -4,13 +4,18 @@ import java.util.List;
 
 import Runner.Environment;
 
-public class BlockStmnt extends ASTList {
-	public BlockStmnt(List<ASTree> c) {
+public class ParameterList extends ASTList {
+	public ParameterList(List<ASTree> c) {
 		super(c);
 	}
 
+	public String name(int i) {
+		return ((ASTLeaf) child(i)).token().getText();
+
+	}
+
 	public static ASTree create(List<ASTree> c) {
-		return new BlockStmnt(c);
+		return new ParameterList(c);
 	}
 
 	public String toString() {
@@ -24,15 +29,11 @@ public class BlockStmnt extends ASTList {
 		return block;
 	}
 
-	public Object eval(Environment env) {
-		Object result = 0;
-		String i = "";
-		for (ASTree t : this) {
-			// if (!(t instanceof NullStmnt))
-			if (t != null)
-				result = ((ASTree) t).eval(env);
-			i = (String) (i + result);
-		}
-		return i;
+	public int size() {
+		return numChildren();
+	}
+
+	public void eval(Environment env, int index, Object value) {
+		env.putNew(name(index), value);
 	}
 }

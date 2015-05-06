@@ -1,16 +1,17 @@
 package Runner;
 
 import AST.ASTree;
+import AST.NestedEnv;
 import AST.NullStmnt;
 import ExprParser.ExprParser;
 import Lexer.CodeDialog;
 import Lexer.Lexer;
 import Lexer.ParseException;
 
-public class BasicInterpreter {
+public class FuncInterpreter {
 	public static void main(String[] args) throws ParseException {
 
-		run(new BasicEnvironment());
+		run(new NestedEnv());
 	}
 
 	public static void run(Environment env) throws ParseException {

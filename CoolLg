@@ -1,0 +1,18 @@
+primary : "(" expr ")" | NUMBER | IDENTIFIER | STRING
+factor : "-" primary | primary
+expr : OP factor factor
+block : [statement] [EOL] [statement] ")"
+simple : expr
+statement : "(" "if" expr block  | simple
+program : [statement] EOL
+
+
+
+
+
+
+
+
+
+
+

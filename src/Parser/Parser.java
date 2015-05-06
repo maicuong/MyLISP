@@ -198,7 +198,6 @@ public class Parser {
 		}
 	}
 
-	// ///////////////////
 	protected static class Skip extends Leaf {
 		protected Skip(String[] t) {
 			super(t);

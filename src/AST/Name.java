@@ -17,8 +17,10 @@ public class Name extends ASTLeaf {
 		Object value = env.get(name());
 		if (value == null)
 			throw new CoolLgException("undefined name: " + name(), this);
-		else
+		else {
+			// int a = Integer.valueOf((String) value);
 			return value;
+		}
 	}
 
 }
